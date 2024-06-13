@@ -12,7 +12,7 @@
 namespace itk
 {
 
-template< class TImage = itk::Image< short, 3 > >
+template< class TImage = itk::Image< short, 3 > > // By default the image is a 3D Series of black and white images
 class TriDimensionalMeasurementCalculator : public itk::Object
 {
 public:
@@ -21,8 +21,8 @@ public:
   typedef itk::Object                         Superclass;
   typedef itk::SmartPointer<Self>             Pointer;
   typedef itk::SmartPointer<const Self>       ConstPointer;
-  itkNewMacro(Self);
-  itkTypeMacro(TriDimensionalMeasurementCalculator, itk::Object);
+  itkNewMacro(Self); // Creates the TriDimensionalMeasurementCalculator::new method
+  itkTypeMacro(TriDimensionalMeasurementCalculator, itk::Object); // Allows you to get the name of the class
 
   typedef TImage ImageType;
   typedef typename TImage::SizeType SizeType;
@@ -37,7 +37,7 @@ public:
   void Update();
 
   // Get measures
-  itkGetMacro( RECISTEndPoint1, PointType );
+  itkGetMacro( RECISTEndPoint1, PointType ); // This Macro Defines Getters
   itkGetMacro( RECISTEndPoint2, PointType );
   itkGetMacro( RECISTLength, double );
 
@@ -56,7 +56,8 @@ public:
   void SetImage( TImage *i ) { m_Image = i; }
 
 protected:
-  TriDimensionalMeasurementCalculator() : m_Image(NULL) {}
+  TriDimensionalMeasurementCalculator() : m_Image(NULL) {} // We don't use the standard constructor because we want
+	// users to use the static new method
   ~TriDimensionalMeasurementCalculator() {}
 
   double 		m_RECISTLength;
